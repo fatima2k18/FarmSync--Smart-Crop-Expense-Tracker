@@ -39,9 +39,27 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/crops").hasRole("FARMER")
+                        .requestMatchers(HttpMethod.GET, "/api/crops/user/**").hasAnyRole("FARMER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/crops").hasRole("ADMIN")
+
+                        // User-related
+                        .requestMatchers("/api/auth/**").permitAll() // public auth endpoints
+                        .requestMatchers(HttpMethod.GET, "/api/users/me").hasAnyRole("FARMER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("FARMER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/doctor/api/users/**").hasAnyRole("FARMER", "ADMIN") // ADD THIS
+
+                        //Crop endpoints
+                        .requestMatchers("/api/crops/**").hasRole("FARMER")
+                                // Both FARMER and ADMIN can view crops
+                                .requestMatchers(HttpMethod.GET, "/api/crops/**").hasAnyRole("FARMER", "ADMIN")
+
+                                // Only FARMER can update crops
+                                .requestMatchers(HttpMethod.PUT, "/api/crops/**").hasRole("FARMER")
+                              // Only FARMER can delete crops
+                             .requestMatchers(HttpMethod.DELETE, "/api/crops/**").hasRole("FARMER")
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

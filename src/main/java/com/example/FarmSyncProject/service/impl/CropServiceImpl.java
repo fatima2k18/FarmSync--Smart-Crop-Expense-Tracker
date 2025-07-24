@@ -54,7 +54,7 @@ public class CropServiceImpl implements CropService {
 
     private CropResponseDto mapToDto(Crop crop) {
         CropResponseDto dto = new CropResponseDto();
-        dto.setId(1L);
+        dto.setId(crop.getId());
         dto.setName(crop.getName());
         dto.setSeason(crop.getSeason());
         dto.setStartDate(crop.getStartDate());
