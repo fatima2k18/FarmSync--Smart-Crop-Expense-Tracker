@@ -1,0 +1,132 @@
+[33mcommit 9e86f14de75ce3c1c43cff392c16fe2dd47b03b8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 8389716 391fabe
+Author: fatima <fatimaejaz2k18@gmail.com>
+Date:   Sat Aug 16 15:32:58 2025 +0530
+
+    git push origin mainMerge branch 'main' of https://github.com/fatima2k18/FarmSync--Smart-Crop-Expense-Tracker
+
+[33mcommit 8389716e37f89e3230113dd1b23fa5a20e027ad5[m
+Author: fatima <fatimaejaz2k18@gmail.com>
+Date:   Sat Aug 16 15:28:18 2025 +0530
+
+    Frontend done till crops added functionality
+
+M	pom.xml
+D	src/main/java/com/example/FarmSyncProject/config/Cors/CorsConfig.java
+M	src/main/java/com/example/FarmSyncProject/config/JwtAuthFilter.java
+M	src/main/java/com/example/FarmSyncProject/config/JwtUtil.java
+M	src/main/java/com/example/FarmSyncProject/config/SecurityConfig.java
+A	src/main/java/com/example/FarmSyncProject/config/SwaggerConfig.java
+M	src/main/java/com/example/FarmSyncProject/controller/ActivityController.java
+A	src/main/java/com/example/FarmSyncProject/controller/AnalyticsController.java
+M	src/main/java/com/example/FarmSyncProject/controller/AuthController.java
+M	src/main/java/com/example/FarmSyncProject/controller/CropController.java
+M	src/main/java/com/example/FarmSyncProject/controller/ExpenseController.java
+M	src/main/java/com/example/FarmSyncProject/controller/UserController.java
+M	src/main/java/com/example/FarmSyncProject/dto/ActivityRequestDto.java
+M	src/main/java/com/example/FarmSyncProject/dto/CropRequestDto.java
+M	src/main/java/com/example/FarmSyncProject/dto/ExpenseRequestDto.java
+M	src/main/java/com/example/FarmSyncProject/dto/ExpenseResponseDto.java
+A	src/main/java/com/example/FarmSyncProject/dto/MonthlyExpenseDto.java
+M	src/main/java/com/example/FarmSyncProject/dto/UserResponseDto.java
+A	src/main/java/com/example/FarmSyncProject/dto/jwtResponse.java
+M	src/main/java/com/example/FarmSyncProject/model/Activity.java
+M	src/main/java/com/example/FarmSyncProject/model/Crop.java
+M	src/main/java/com/example/FarmSyncProject/model/Expense.java
+M	src/main/java/com/example/FarmSyncProject/model/User.java
+M	src/main/java/com/example/FarmSyncProject/repository/ActivityRepository.java
+M	src/main/java/com/example/FarmSyncProject/repository/CropRepository.java
+M	src/main/java/com/example/FarmSyncProject/repository/ExpenseRepository.java
+M	src/main/java/com/example/FarmSyncProject/repository/UserRepository.java
+M	src/main/java/com/example/FarmSyncProject/service/ActivityService.java
+M	src/main/java/com/example/FarmSyncProject/service/AuthService.java
+M	src/main/java/com/example/FarmSyncProject/service/CropService.java
+M	src/main/java/com/example/FarmSyncProject/service/ExpenseService.java
+M	src/main/java/com/example/FarmSyncProject/service/UserService.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/ActivityServiceImpl.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/AuthServiceImpl.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/CropServiceImpl.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/CustomerUserDetailsService.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/ExpenseServiceImpl.java
+A	src/main/java/com/example/FarmSyncProject/service/impl/UserDetailsImpl.java
+A	src/main/java/com/example/FarmSyncProject/service/impl/UserDetailsServiceImpl.java
+M	src/main/java/com/example/FarmSyncProject/service/impl/UserServiceImpl.java
+M	src/main/resources/application.properties
+
+[33mcommit 391fabe4494f676c5a81e742de805b7f127b3d37[m
+Author: Fatima <fatimaejaz2k18@gmail.com>
+Date:   Fri Jul 25 20:17:28 2025 +0530
+
+    Fix: remove submodule and add farmsync-frontend as normal folder
+
+A	farmsync-frontend/.gitignore
+A	farmsync-frontend/README.md
+A	farmsync-frontend/eslint.config.js
+A	farmsync-frontend/index.html
+A	farmsync-frontend/package-lock.json
+A	farmsync-frontend/package.json
+A	farmsync-frontend/public/vite.svg
+A	farmsync-frontend/src/App.css
+A	farmsync-frontend/src/App.jsx
+A	farmsync-frontend/src/api/auth.js
+A	farmsync-frontend/src/api/axiosConfig.js
+A	farmsync-frontend/src/assets/react.svg
+A	farmsync-frontend/src/components/LoginRegister.js
+A	farmsync-frontend/src/components/loginUser.js
+A	farmsync-frontend/src/index.css
+A	farmsync-frontend/src/main.jsx
+A	farmsync-frontend/vite.config.js
+
+[33mcommit 5aef73b7eefbb8307d9ed6045b637ae34a286887[m
+Author: Fatima <fatimaejaz2k18@gmail.com>
+Date:   Fri Jul 25 20:10:19 2025 +0530
+
+    Fix: remove submodule reference and add FarmSyncProject as normal folder
+
+D	FarmSyncProject
+A	FarmSyncProject/.gitattributes
+A	FarmSyncProject/.gitignore
+A	FarmSyncProject/.mvn/wrapper/maven-wrapper.properties
+A	FarmSyncProject/mvnw
+A	FarmSyncProject/mvnw.cmd
+A	FarmSyncProject/pom.xml
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/FarmSyncProjectApplication.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/config/Cors/CorsConfig.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/config/JwtAuthFilter.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/config/JwtUtil.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/config/SecurityConfig.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/controller/ActivityController.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/controller/AuthController.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/controller/CropController.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/controller/ExpenseController.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/controller/UserController.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/ActivityRequestDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/ActivityResponseDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/CropRequestDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/CropResponseDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/ExpenseRequestDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/ExpenseResponseDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/LoginRegister.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/LoginRequest.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/LoginResponse.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/RegisterRequest.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/dto/UserResponseDto.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/enums/Role.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/model/Activity.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/model/Crop.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/model/Expense.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/model/User.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/repository/ActivityRepository.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/repository/CropRepository.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/repository/ExpenseRepository.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/repository/UserRepository.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/ActivityService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/AuthService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/CropService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/ExpenseService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/UserService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/impl/ActivityServiceImpl.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/impl/AuthServiceImpl.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/impl/CropServiceImpl.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProject/service/impl/CustomerUserDetailsService.java
+A	FarmSyncProject/src/main/java/com/example/FarmSyncProje
