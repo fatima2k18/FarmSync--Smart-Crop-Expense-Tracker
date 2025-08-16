@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ActivityRequestDto {
     private String type;
+
     private LocalDate date;
     private Long cropId;
 }

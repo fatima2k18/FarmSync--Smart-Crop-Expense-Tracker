@@ -10,5 +10,6 @@ public class ExpenseResponseDto {
     private String type;
     private Double amount;
     private String username;
+    private String cropName; // ✅ Add this
 
 }

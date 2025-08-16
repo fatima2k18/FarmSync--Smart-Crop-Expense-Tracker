@@ -2,6 +2,9 @@ package com.example.FarmSyncProject.model;
 import com.example.FarmSyncProject.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
+
 @Entity
 @Table(name="users")
 @Getter
@@ -20,7 +23,8 @@ public class User {
     private String email;
 
     private String password;
-    @Enumerated(EnumType.STRING)
+
+ @Enumerated(EnumType.STRING)
     private Role role; // FARMER or ADMIN
 }
 

@@ -22,8 +22,8 @@ public class UserResponseDto {
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
         dto.setRole(user.getRole().name()); // Convert enum to String
+
+
         return dto;
     }
-
-    //dto.setRole(user.getRole().name());  // Converts enum to String
 }

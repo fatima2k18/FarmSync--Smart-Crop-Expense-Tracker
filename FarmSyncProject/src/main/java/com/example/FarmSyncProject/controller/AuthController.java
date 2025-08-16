@@ -9,26 +9,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
+
 //@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/auth")@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+
 public class AuthController {
     @Autowired
     private AuthService authService;
     @Autowired
     private UserRepository userRepository; // ✅ Inject the repository
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
                     .body("User already registered!");
         }
-        return ResponseEntity.ok(authService.registerUser(request));
+
+        String result = authService.registerUser(request);
+        return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.loginUser(request));
+        @PostMapping("/login")
+        public ResponseEntity<?> login (@RequestBody LoginRequest request){
+
+            try {
+                LoginResponse response = authService.loginUser(request); // contains token + role
+                return ResponseEntity.ok(response);
+            } catch (RuntimeException e) {
+                return ResponseEntity
+                        .badRequest()
+                        .body(new LoginResponse(null, e.getMessage()));
+            }
+        }
     }
-}

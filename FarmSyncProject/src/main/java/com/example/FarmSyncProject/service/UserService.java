@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public interface UserService {
     UserResponseDto getUserById(Long id);
     List<UserResponseDto> getAllUsers(); // ✅ Add this
+    Long getUserIdByUsername(String username);
+
 
 }
 

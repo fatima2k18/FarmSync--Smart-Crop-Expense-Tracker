@@ -8,4 +8,5 @@ import java.util.List;
 public interface ActivityService {
     ActivityResponseDto createActivity(ActivityRequestDto dto);
     List<ActivityResponseDto> getByCropId(Long cropId);
+    List<ActivityResponseDto> getAllActivities();
 }

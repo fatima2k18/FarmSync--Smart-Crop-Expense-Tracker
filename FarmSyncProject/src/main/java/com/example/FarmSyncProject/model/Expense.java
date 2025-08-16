@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,8 @@ public class Expense {
 
     private LocalDate date;
 
+
+    @Column(name = "note") // ✅ Add this
     private String note;
 
     @ManyToOne
