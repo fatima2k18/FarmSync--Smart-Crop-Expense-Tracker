@@ -10,6 +10,7 @@ import com.example.FarmSyncProject.service.CropService;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CropServiceImpl implements CropService {
     private final CropRepository cropRepository;
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
     @Override
-    public CropResponseDto addCrop(CropRequestDto dto) {
-        User user =  userRepository.findById(dto.getUserId())
+    public CropResponseDto addCrop(CropRequestDto dto, Long userId) {
+//        User user = userRepository.findById(dto.getUserId())
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Crop crop = new Crop();
@@ -34,7 +38,6 @@ public class CropServiceImpl implements CropService {
         crop.setUser(user);
 
         Crop saved = cropRepository.save(crop);
-
         return mapToDto(saved);
     }
 
@@ -47,9 +50,45 @@ public class CropServiceImpl implements CropService {
 
     @Override
     public List<CropResponseDto> getCropsByUserId(Long userId) {
-        return cropRepository.findByUserId(userId).stream()
+        return cropRepository.findByUser_Id(userId).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public CropResponseDto updateCrop(Long cropId, CropRequestDto cropRequestDto, Long userId) {
+        Crop crop = cropRepository.findById(cropId)
+                .orElseThrow(() -> new RuntimeException("Crop not found"));
+
+        // Only owner or admin can update
+        if (!crop.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Access denied: You can update only your crops.");
+        }
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        crop.setName(cropRequestDto.getName());
+        crop.setSeason(cropRequestDto.getSeason());
+        crop.setStartDate(cropRequestDto.getStartDate());
+        crop.setEndDate(cropRequestDto.getEndDate());
+        crop.setUser(user); // ✅ This must be set!
+
+        Crop updated = cropRepository.save(crop);
+        return mapToDto(updated);
+    }
+
+    @Override
+    public CropResponseDto deleteCrop(Long cropId, Long userId) {
+        Crop crop = cropRepository.findById(cropId)
+                .orElseThrow(() -> new RuntimeException("Crop not found"));
+
+        // Only owner or admin can delete
+        if (!crop.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Access denied: You can delete only your crops.");
+        }
+
+        cropRepository.delete(crop);
+        return mapToDto(crop); // Optional: returning deleted crop's details
+
     }
 
     private CropResponseDto mapToDto(Crop crop) {
@@ -62,4 +101,5 @@ public class CropServiceImpl implements CropService {
         dto.setFarmerName(crop.getUser().getName());
         return dto;
     }
+
 }

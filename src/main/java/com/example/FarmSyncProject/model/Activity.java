@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Activity")
+@Table(name="activity")
 public class Activity {
 
     @Id
@@ -23,12 +23,12 @@ public class Activity {
 
     private String type; // Watering, Sowing, Harvest, etc.
 
-    private String description;
 
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+
     @JoinColumn(name = "crop_id")
     private Crop crop;
-    
+
 }

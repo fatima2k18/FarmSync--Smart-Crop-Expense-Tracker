@@ -23,20 +23,10 @@ public class UserServiceImpl implements UserService {
         dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
-        dto.setRole(user.getRole().name()); // ✅ Add this line
+        dto.setRole(user.getRole().name()); // Directly use getRole()
         return dto;
     }
-//    @Override
-//    public UserResponseDto getUserById(Long id) {
-//        User user = userRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//
-//        UserResponseDto dto = new UserResponseDto();
-//        dto.setId(user.getId());
-//        dto.setName(user.getName());
-//        dto.setEmail(user.getEmail());
-//        return dto;
-//    }
+
     @Override
     public List<UserResponseDto> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -50,8 +40,15 @@ public class UserServiceImpl implements UserService {
         dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
-        dto.setRole(user.getRole().name());
+        dto.setRole(user.getRole().name()); // Directly get the name of the enum
+
         // Add other fields as needed
         return dto;
+    }
+    @Override
+    public Long getUserIdByUsername(String username) {
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + username));
+        return user.getId();
     }
 }

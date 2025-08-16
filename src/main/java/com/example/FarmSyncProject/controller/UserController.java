@@ -44,6 +44,7 @@ public class UserController {
         User currentUser = userRepository.findByEmail(currentUsername)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        // Allow only ADMIN users to access all users
         if (currentUser.getRole() != Role.ADMIN) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
@@ -59,6 +60,7 @@ public class UserController {
         User currentUser = userRepository.findByEmail(currentUsername)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        // Only allow if the user is ADMIN or accessing their own profile
         if (currentUser.getRole() != Role.ADMIN && !currentUser.getId().equals(id)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
